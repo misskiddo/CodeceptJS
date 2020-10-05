@@ -7,29 +7,31 @@ Before(({I}) => {
   });
 
 Scenario('Scenario 1 - Round Trip', async ({ I }) => {
-    I.say('Hello');
+  
   
    // I.waitForElement('#origin_R_0', 20);
 
    var originLocator = "#departureOriginDropDown-input";
    var destinationLocator = '#departureDestinationDropDown-input';
 
-    I.click(originLocator);
-
-    I.fillField(originLocator, 'Calgary');
+   
+    I.click(originLocator); 
+    I.fillField(originLocator, 'Vancouver');
+    I.waitForText('Vancouver', 3, '#departureOriginDropDown-list');
     I.pressKey('Enter');
 
-    I.click(destinationLocator);
-    I.fillField(destinationLocator,'Tor');
+
+// DESTINATION
+
+//    I.waitForVisible('#departureDestinationDropDown-list');
+    I.fillField(destinationLocator,'Montre');
+    I.waitForText('Montreal', 3, '#departureDestinationDropDown-list');
+    I.pressKey('ArrowDown');
+    I.pressKey('Enter');
+
     
-    var activeCity = await I.grabValueFrom('.location-primary.active');
 
-    while (activeCity != 'Hamilton'){
-
-        I.pressKey('ArrowDown');
-    }
-
-    
+    pause();
 
 
     
