@@ -39,7 +39,7 @@ Scenario('Scenario 2 - Verify Title', async ({ I }) => {
   
     var title = await I.grabTitle();
     var assert = require('assert');
-    assert.strictEqual(title, 'Air Canada - The Official Website');
+    assert.strictEqual(title, 'Cheap flights to Canada, Europe, USA and Sun destinations | Air Transat');
 
 });
 
