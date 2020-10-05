@@ -3,8 +3,12 @@ exports.config = {
   output: './output',
   helpers: {
     WebDriver: {
-      url: 'http://localhost',
-      browser: 'chrome'
+      url: 'https://www.airtransat.com/',
+      smartWait: 5000,
+      browser: 'chrome',
+      restart: false,
+      keepBrowserState: true,
+      keepCookies: true
     }
   },
   include: {
@@ -23,6 +27,8 @@ exports.config = {
     },
     screenshotOnFail: {
       enabled: true
-    }
+    },
+    allure: {}
+
   }
 }
