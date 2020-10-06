@@ -2,30 +2,12 @@ Feature('Booking');
 
 Before(({I}) => { 
     I.amOnPage('https://www.airtransat.com/');
-   // I.waitForVisible('.acofooter');
  
   });
 
-Scenario('Scenario 1 - Round Trip', async ({ I }) => {
+Scenario('Scenario 1 - Round Trip',  ({ I, FlightSelection }) => {
   
-   var originLocator = "#departureOriginDropDown-input";
-   var destinationLocator = '#departureDestinationDropDown-input';
-
-   
-   // Select Origin city
-    I.click(originLocator); 
-    I.fillField(originLocator, 'Vancouver');
-    I.waitForText('Vancouver', 3, '#departureOriginDropDown-list');
-    I.pressKey('Enter');
-
-
-    // Select Destination City
-
-    I.fillField(destinationLocator,'Montre');
-    I.waitForText('Montreal', 3, '#departureDestinationDropDown-list');
-    I.pressKey('ArrowDown');
-    I.pressKey('Enter');
-
+    FlightSelection.selectFromToCities('Vancouver', 'Montr') ;
     
     // Select From-To dates in calendar 
 
@@ -35,21 +17,9 @@ Scenario('Scenario 1 - Round Trip', async ({ I }) => {
     I.pressKey('Enter');
 
 
-    // Select Number of passangers   
-  //  I.click("#tsTravelersSelectorRtOj"); // Open the passanger layout
-  //  I.waitForVisible(".travelers.TS-incrementalBox.bsh-bigDrop.active", 5);
-
-    // Select 2 Adults
-    within('#tsTravelersSelectorRtOj-adults', () => {
-      I.click('.plus.TS-btn.btn-level1');
-      });
-
-   // Select 5 children
-   within('#tsTravelersSelectorRtOj-children', () => {
-       for(i = 0; i < 5; i++) {
-            I.click('.plus.TS-btn.btn-level1');
-       }
-    });
+    FlightSelection.selectAdults(2); 
+    FlightSelection.selectChildren(5);
+  
     
 
     pause();

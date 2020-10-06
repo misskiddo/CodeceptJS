@@ -12,7 +12,8 @@ exports.config = {
     }
   },
   include: {
-    I: './steps_file.js'
+    I: './steps_file.js',
+    FlightSelection: './fragments/FlightSelection.js'
   },
   bootstrap: null,
   mocha: {},
