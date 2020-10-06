@@ -4,7 +4,7 @@ exports.config = {
   helpers: {
     WebDriver: {
       url: 'https://www.airtransat.com/',
-      smartWait: 5000,
+      smartWait: 10000,
       browser: 'chrome',
       restart: false,
       keepBrowserState: true,

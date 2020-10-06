@@ -5,28 +5,44 @@ module.exports = {
   root: '#flight0',
 
   // Locators
-  originCityLocator : "#departureOriginDropDown-input",
-  originDropdownLocator : "departureOriginDropDown-list",
+  originCityLocator : '#departureOriginDropDown-input',
+  originDropdownLocator : '#departureOriginDropDown-list', 
   destinationCityLocator : '#departureDestinationDropDown-input',
-  destinationDropdownLocator : "#departureDestinationDropDown-list",
+  destinationDropdownLocator : '#departureDestinationDropDown-list',
+ // activeOriginCity : '.liItem-departureOriginDropDown.active',
+ activerOriginCityDropdown : '//*[@id="departureOriginDropDown"]/child::ul[1]', 
+ activerDestinationCityDropdown : '//*[@id="departureDestinationDropDown"]/child::ul[1]', 
+  activeDestinationCity : '.liItem-departureDestinationDropDown.active',
+   
 
 
   // insert your locators and methods here
-  selectFromToCities(origin, destination){
 
+  async selectOriginCity(origin){
     I.click(this.originCityLocator); 
+    I.clearField(this.originCityLocator);
     I.fillField(this.originCityLocator, origin);
-    I.waitForText(origin, 3, originDropdownLocator);
+    I.waitForText(origin, 5, this.activerOriginCityDropdown);
     I.pressKey('Enter');
+    
+  },
 
-    pause();
-    // Select Destination City
-
-    I.fillField(this.destinationLocator, destination);
-    I.waitForText(destination, 3, destinationDropdownLocator);
-    I.pressKey('ArrowDown');
+  async selectDestinationCity(destination){
+    I.clearField(this.destinationCityLocator);
+    I.fillField(this.destinationCityLocator, destination);
+    I.waitForText(destination, 5, this.activerDestinationCityDropdown);
     I.pressKey('Enter');
+  },
 
+  selectFromDate(from){
+    I.fillField('#tsDatePickerFirstCalendar-input', from);
+    I.pressKey('Enter');
+  
+  },
+
+  selectToDate(to){
+    I.fillField('#tsDatePickerSecondCalendar-input',to);
+    I.pressKey('Enter');
   },
 
   selectAdults(number){
