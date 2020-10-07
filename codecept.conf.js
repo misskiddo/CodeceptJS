@@ -1,5 +1,5 @@
 exports.config = {
-  tests: './*_test.js',
+  tests: './**/*_test.js',
   output: './output',
   helpers: {
     WebDriver: {
@@ -8,12 +8,18 @@ exports.config = {
       browser: 'chrome',
       restart: false,
       keepBrowserState: true,
-      keepCookies: true
+      keepCookies: true,
+      windowSize: 'maximize'
     }
   },
   include: {
     I: './steps_file.js',
-    FlightSelection: './fragments/FlightSelection.js'
+    FlightSelection: './fragments/FlightSelection.js',
+    TimeSelection: './pages/TimeSelection.js',
+    SeatSelection: './pages/SeatSelection.js',
+    Passenger: './pages/Passenger.js',
+    Insurance: './pages/Insurance.js',
+    Payment: './pages/Payment.js'
   },
   bootstrap: null,
   mocha: {},

@@ -5,6 +5,10 @@ module.exports = {
   root: '#flight0',
 
   // Locators
+  oneWayTab : '#OW-tab',
+
+
+
   originCityLocator : '#departureOriginDropDown-input',
   originDropdownLocator : '#departureOriginDropDown-list', 
   destinationCityLocator : '#departureDestinationDropDown-input',
@@ -13,10 +17,19 @@ module.exports = {
  activerOriginCityDropdown : '//*[@id="departureOriginDropDown"]/child::ul[1]', 
  activerDestinationCityDropdown : '//*[@id="departureDestinationDropDown"]/child::ul[1]', 
   activeDestinationCity : '.liItem-departureDestinationDropDown.active',
+  continueButton : '.TS-btn.btn-whiterabbit.TS-focusable.stepSetContinue.btnUpdateLevel',
    
 
 
-  // insert your locators and methods here
+  // Methods 
+
+  // Select One-Way Tab and verify that the to-Date field is not displayed
+  selectOneWay(){
+    I.click(this.oneWayTab);
+    I.dontSee(this.destinationCityLocator);
+  },
+
+  
 
   async selectOriginCity(origin){
     I.click(this.originCityLocator); 
@@ -45,6 +58,7 @@ module.exports = {
     I.pressKey('Enter');
   },
 
+  // Select number of Adults passengers
   selectAdults(number){
     within('#tsTravelersSelectorRtOj-adults', () => {
       for (i = 1; i < number; i++){
@@ -54,6 +68,7 @@ module.exports = {
       });
   },
 
+  // Select number of Children passengers
   selectChildren(number){
     within('#tsTravelersSelectorRtOj-children', () => {
       for (i = 0; i < number; i++){
@@ -61,5 +76,40 @@ module.exports = {
       }
      
       });
-  }
+  },
+
+    // Select number of Infants on seat 
+    selectInfants(number){
+      within('#tsTravelersSelectorRtOj-babySeat', () => {
+        for (i = 0; i < number; i++){
+          I.click('.plus.TS-btn.btn-level1');
+        }
+       
+        });
+    },
+
+    selectInfantsOnLap(number){
+      within('#tsTravelersSelectorRtOj-babyLap', () => {
+        for (i = 0; i < number; i++){
+          I.click('.plus.TS-btn.btn-level1');
+        }
+       
+        });
+
+      
+    },
+
+    introduceAges(ages){
+      var size = ages.length;
+
+      for( i=0 ; i< size ; i++){
+        I.fillField('#tsTravelersSelectorRtOj-'+i+'-childAgeInput', ages[i]);
+      }
+    },
+
+    clickContinue(){
+      I.click(this.continueButton);
+
+    }
+
 }
