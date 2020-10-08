@@ -18,9 +18,8 @@ Scenario('E2E Scenario 1 - Round Trip  @E2E',  async ({ I, FlightSelection, Time
     FlightSelection.selectFromDate('11-05-2020');
     FlightSelection.selectToDate('12-06-2020');
 
-    // Select 2 Adults and 5 Children
+    // Select 2 Adults
     FlightSelection.selectAdults(2); 
-    //FlightSelection.selectChildren(5);   
 
     FlightSelection.clickContinue();
 
@@ -29,7 +28,6 @@ Scenario('E2E Scenario 1 - Round Trip  @E2E',  async ({ I, FlightSelection, Time
     
     // Select Eco Standard Fee to go
     TimeSelection.selectEcoStandardToGo();
-
 
     // Select Club Flex Fee to Come Back 
     TimeSelection.selectClubFlexToComeBack();
@@ -55,10 +53,8 @@ Scenario('E2E Scenario 1 - Round Trip  @E2E',  async ({ I, FlightSelection, Time
     Passenger.fillMainContactInformation();
     Passenger.clickSave();
 
-    // Insurance section
-    I.see('Travel insurance'); 
-
-    // Select Don't want insurance
+    // Insurance section - Select Don't want insurance
+    I.see('Travel insurance');    
     Insurance.dontwantInsurance();    
     Insurance.yesIamSure();
     Insurance.clickSave();
@@ -71,19 +67,10 @@ Scenario('E2E Scenario 1 - Round Trip  @E2E',  async ({ I, FlightSelection, Time
 
     Payment.clickPay();
 
-    I.see('Sorry, an error occurred');
+    I.see('Sorry, an error occurred'); // Because payment failed
 
     pause();
 });
 
-Scenario('Scenario Data @test', ({ I }) => {    
-    let passengers = [
-        ['Ms', 'Toni', 'Cabrera', '04', 'June', '1987', 'Female', 'QC'],
-        ['Mr', 'Max', 'Watson', '01', 'July', '2000', 'Male', 'ON']
-    ];
 
-    console.log("the lenght is: "+ passengers.length);
-
-
-});
 
